@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 namespace _net.Controllers;
 
 [ApiController]
-[Route("V1")]
+[Route("v1")]
 public class TodoController : ControllerBase
 {
 
     [HttpGet]
-    [Route("Todos")]
+    [Route("todos")]
     public async Task<IActionResult> GetAsync(ApiDbContext context)
     {
         var Todos = await context.Todos.AsNoTracking().ToListAsync();
@@ -19,7 +19,7 @@ public class TodoController : ControllerBase
     }
 
     [HttpGet]
-    [Route("Todos/{id}")]
+    [Route("todos/{id}")]
     public async Task<IActionResult> GetByIdAsync(ApiDbContext context, int id)
     {
         var todo = await context.Todos.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
@@ -28,7 +28,7 @@ public class TodoController : ControllerBase
 
 
     [HttpPost]
-    [Route("Todos")]
+    [Route("todos")]
     public async Task<IActionResult> PostAsync(ApiDbContext context, Todo todo)
     {
 
@@ -47,7 +47,7 @@ public class TodoController : ControllerBase
     }
 
     [HttpPut]
-    [Route("Todos/{id}")]
+    [Route("todos/{id}")]
     public async Task<IActionResult> PutAsync(ApiDbContext context, int id, [FromBody] Todo todo)
     {
         var updateTodo = await context.Todos.FirstOrDefaultAsync(x => x.Id == id);
@@ -72,7 +72,7 @@ public class TodoController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("Todos/{id}")]
+    [Route("todos/{id}")]
     public async Task<IActionResult> DeleteAsync(ApiDbContext context, int id)
     {
         var deleteTodo = await context.Todos.FirstOrDefaultAsync(x => x.Id == id);
